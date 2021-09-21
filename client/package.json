@@ -1,0 +1,31 @@
+{
+  "name": "university-rest",
+  "version": "1.0.0",
+  "description": "REST API for the university, which consists of departments and lectors",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ExposedCat/unversity-rest.git"
+  },
+  "keywords": [
+    "express",
+    "university",
+    "rest",
+    "api",
+    "node"
+  ],
+  "author": "ExposedCat",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ExposedCat/unversity-rest/issues"
+  },
+  "homepage": "https://github.com/ExposedCat/unversity-rest#readme",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^3.0.0"
+  }
+}
