@@ -1,6 +1,6 @@
 # University REST 
 <hr>
 <p>
-    Nothing there yet
+    Nothing here yet
 </p>
 <hr>
