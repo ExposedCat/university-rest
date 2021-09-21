@@ -99,6 +99,22 @@ function setupServer(port) {
         response.send(data)
     })
 
+    app.get('/getCountOfEmployeeForDepartment', async (request, response) => {
+        let data = { data: 'Error' }
+        const { name } = request.query
+        if (name) {
+            const count = await Lectors.count({
+                departments: {
+                    $elemMatch: {
+                        name
+                    }
+                }
+            })
+            data.data = count
+        }
+        response.send(data)
+    })
+
     app
         .listen(port, () => {
             console.info(`Server is running on ${port}`)
