@@ -115,6 +115,20 @@ function setupServer(port) {
         response.send(data)
     })
 
+    app.get('/globalSearch', async (request, response) => {
+        let data = { data: 'Error' }
+        const { query } = request.query
+        if (query) {
+            const lectors = await Lectors.find({
+                name: new RegExp(query, 'i')
+            })
+            if (lectors.length) {
+                data.data = lectors.map(lector => lector.name)
+            }
+        }
+        response.send(data)
+    })
+
     app
         .listen(port, () => {
             console.info(`Server is running on ${port}`)
