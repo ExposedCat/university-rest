@@ -15,6 +15,7 @@ async function connectToDb({ host, name, port }) {
             name: 'Nik',
             degree: 'professor',
             departments: [{
+                salary: 100,
                 name: 'Dep1',
                 isHead: false
             }]
@@ -23,6 +24,7 @@ async function connectToDb({ host, name, port }) {
             name: 'Nik',
             degree: 'assistant',
             departments: [{
+                salary: 50,
                 name: 'Dep1',
                 isHead: false
             }]
@@ -30,6 +32,7 @@ async function connectToDb({ host, name, port }) {
         await Lectors.create({
             name: 'Maria',
             degree: 'professor',
+            salary: 150,
             departments: [{
                 name: 'Dep2',
                 isHead: true
@@ -39,6 +42,7 @@ async function connectToDb({ host, name, port }) {
             name: 'Yulia',
             degree: 'professor',
             departments: [{
+                salary: 105,
                 name: 'Dep1',
                 isHead: true
             }]
@@ -57,6 +61,10 @@ async function connectToDb({ host, name, port }) {
 const LectorsDepartmentsSchema = new mongoose.Schema({
     name: {
         type: String,
+        required: true
+    },
+    salary: {
+        type: Number,
         required: true
     },
     isHead: {
