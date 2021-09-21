@@ -8,12 +8,20 @@ async function connectToDb({ host, name, port }) {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        
+
         // Add test data
         await Lectors.deleteMany()
         await Lectors.create({
             name: 'Nik',
             degree: 'professor',
+            departments: [{
+                name: 'Dep1',
+                isHead: false
+            }]
+        })
+        await Lectors.create({
+            name: 'Nik',
+            degree: 'assistant',
             departments: [{
                 name: 'Dep1',
                 isHead: false
