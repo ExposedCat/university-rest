@@ -1,4 +1,7 @@
 import express from 'express'
+import { localApiCall } from './utilites/api.js'
+import { matchByRegex } from './utilites/regexSwitch.js'
+
 
 function setupServer(port) {
     const app = express()
@@ -9,12 +12,15 @@ function setupServer(port) {
     }))
 
     app.get('/', async (request, response) => {
-        let data = { message: 'Error' }
         const { query } = request.query
-        if (query) {
-            data.message = 'Success'
+        let result = {
+            message: 'Error'
         }
-        response.send(data)
+        if (query) {
+            await matchByRegex(query, [
+            ])
+        }
+        response.send(result)
     })
 
     app
@@ -26,5 +32,6 @@ function setupServer(port) {
             console.error(error)
         })
 }
+
 
 export { setupServer }
