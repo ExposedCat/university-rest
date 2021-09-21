@@ -1,4 +1,5 @@
 import express from 'express'
+import { Lectors } from './database.js'
 
 function setupServer(port) {
     const app = express()
@@ -8,8 +9,22 @@ function setupServer(port) {
         extended: true
     }))
 
-    app.get('/', async (request, response) => {
-        const data = { message: 'Test' }
+    app.get('/getHeadOfDepartment', async (request, response) => {
+        let data = { message: 'Error' }
+        const { name } = request.query
+        if (name) {
+            const head = await Lectors.findOne({
+                departments: {
+                    $elemMatch: {
+                        name,
+                        isHead: true
+                    }
+                }
+            })
+            if (head) {
+                data.message = head.name
+            }
+        }
         response.send(data)
     })
 

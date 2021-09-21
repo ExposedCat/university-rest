@@ -8,6 +8,34 @@ async function connectToDb({ host, name, port }) {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
+        
+        // Add test data
+        await Lectors.deleteMany()
+        await Lectors.create({
+            name: 'Nik',
+            degree: 'professor',
+            departments: [{
+                name: 'Dep1',
+                isHead: false
+            }]
+        })
+        await Lectors.create({
+            name: 'Maria',
+            degree: 'professor',
+            departments: [{
+                name: 'Dep2',
+                isHead: true
+            }]
+        })
+        await Lectors.create({
+            name: 'Yulia',
+            degree: 'professor',
+            departments: [{
+                name: 'Dep1',
+                isHead: true
+            }]
+        })
+
         console.clear()
         console.info(`Connected to database "${name}" on ${host}:${port}`)
         return db
@@ -18,7 +46,7 @@ async function connectToDb({ host, name, port }) {
     }
 }
 
-const UserDepartmentsSchema = new mongoose.Schema({
+const LectorsDepartmentsSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -30,7 +58,7 @@ const UserDepartmentsSchema = new mongoose.Schema({
     }
 })
 
-const LectorSchema = new mongoose.Schema({
+const LectorsSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -39,20 +67,16 @@ const LectorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    headOf: {
-        type: [String],
-        required: true
-    },
     departments: {
-        type: [UserDepartmentsSchema],
+        type: [LectorsDepartmentsSchema],
         required: true,
         default: []
     }
 })
 
-const Lector = mongoose.model('Lector', LectorSchema)
+const Lectors = mongoose.model('Lectors', LectorsSchema)
 
 export {
-    Lector,
+    Lectors,
     connectToDb
 }
