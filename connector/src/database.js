@@ -32,8 +32,8 @@ async function connectToDb({ host, name, port }) {
         await Lectors.create({
             name: 'Maria',
             degree: 'professor',
-            salary: 150,
             departments: [{
+                salary: 150,
                 name: 'Dep2',
                 isHead: true
             }]

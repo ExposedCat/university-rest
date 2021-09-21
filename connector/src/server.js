@@ -10,7 +10,7 @@ function setupServer(port) {
     }))
 
     app.get('/getHeadOfDepartment', async (request, response) => {
-        let data = { message: 'Error' }
+        let data = { data: 'Error' }
         const { name } = request.query
         if (name) {
             const head = await Lectors.findOne({
@@ -22,14 +22,14 @@ function setupServer(port) {
                 }
             })
             if (head) {
-                data.message = head.name
+                data.data = head.name
             }
         }
         response.send(data)
     })
 
     app.get('/getDepartmentStatistic', async (request, response) => {
-        let data = { message: 'Error' }
+        let data = { data: 'Error' }
         const { name } = request.query
         if (name) {
             const facetQuery = degree => [
@@ -64,11 +64,36 @@ function setupServer(port) {
             ])
             if (statistic) {
                 const { assistants, associateProfessors, professors } = statistic[0]
-                data.message = {
+                data.data = {
                     assistants: assistants || 0,
                     associateProfessors: associateProfessors || 0,
                     professors: professors || 0,
                 }
+            }
+        }
+        response.send(data)
+    })
+
+    app.get('/getAverageSalaryOfDepartment', async (request, response) => {
+        let data = { data: 'Error' }
+        const { name } = request.query
+        if (name) {
+            const $match = {
+                'departments.name': name
+            }
+            const $group = {
+                _id: '$departments.name',
+                averageSalary: {
+                    $avg: '$departments.salary'
+                }
+            }
+            const salary = await Lectors.aggregate([
+                { $unwind: '$departments' },
+                { $match },
+                { $group }
+            ])
+            if (salary[0]) {
+                data.data = salary[0].averageSalary
             }
         }
         response.send(data)
