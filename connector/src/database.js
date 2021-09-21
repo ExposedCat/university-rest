@@ -1,18 +1,19 @@
 import mongoose from 'mongoose'
 
-async function connectToDb(name) {
+async function connectToDb({ host, name, port }) {
     try {
         console.info('Connecting to database..')
         mongoose.Promise = global.Promise
-        const db = await mongoose.connect(`mongodb://localhost:27017/${name}`, {
+        const db = await mongoose.connect(`mongodb://${host}:${port}/${name}`, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
         console.clear()
-        console.info('Connected to database')
+        console.info(`Connected to database "${name}" on ${host}:${port}`)
         return db
-    } catch (e) {
-        console.error('CRITICAL: Cannot connect to database')
+    } catch (error) {
+        console.error('CRITICAL: Cannot connect to database:')
+        console.error(error)
         process.exit()
     }
 }

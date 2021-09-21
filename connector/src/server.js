@@ -1,6 +1,6 @@
-import {config} from 'config.js'
+import express from 'express'
 
-function setupServer() {
+function setupServer(port) {
     const app = express()
 
     app.use(express.json())
@@ -9,17 +9,18 @@ function setupServer() {
     }))
 
     app.get('/', async (request, response) => {
-        const data = await apiCall('lists/names.json')
-        const genresList = data.results.map((genre: genre) => genre.list_name_encoded)
-        response.send(genresList)
+        const data = { message: 'Test' }
+        response.send(data)
     })
 
     app
-        .listen(config.port, () => {
-            console.info(`Server is running on ${config.port}`)
+        .listen(port, () => {
+            console.info(`Server is running on ${port}`)
         })
         .on('error', error => {
             console.error(`Can't start server:`)
             console.error(error)
         })
 }
+
+export { setupServer }
