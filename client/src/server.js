@@ -11,7 +11,7 @@ function setupServer(port) {
         extended: true
     }))
 
-    app.get('/', async (request, response) => {
+    app.get('/search', async (request, response) => {
         const { query } = request.query
         let result = {
             message: 'Error'
