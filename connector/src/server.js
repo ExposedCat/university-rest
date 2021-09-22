@@ -93,7 +93,7 @@ function setupServer(port) {
                 { $group }
             ])
             if (salary[0]) {
-                data.data = salary[0].averageSalary
+                data.data = Number(salary[0].averageSalary.toFixed(3))
             }
         }
         response.send(data)
