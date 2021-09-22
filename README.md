@@ -2,7 +2,7 @@
 ## Connector 
 Config: `connector/src/utilites/config.js`  
 Dependencies: `cd connector && npm install`  
-Running: `cd connector && npm start` or `cd connector && node src/app.js`. Default running port is 3000 (can be changed in config).
+Running: `cd connector && npm start` or `cd connector && node src/app.js`. By default running port is 3000 (can be changed in config).  
 Endpoints:
  - `/getHeadOfDepartment?name={department_name}` - get head of the department
  - `/getDepartmentStatistic?name={department_name}` - get department statistic
@@ -12,7 +12,7 @@ Endpoints:
 ## Client 
 Config: `clinet/src/utilites/config.js`  
 Dependencies: `cd clinet && npm install`  
-Running: `cd clinet && npm start` or `cd clinet && node src/app.js`. Default running port is 8080 and using connector on 3000 (can be changed in config).
+Running: `cd clinet && npm start` or `cd clinet && node src/app.js`. By default running port is 8080 and using connector on 3000 (can be changed in config).  
 Endpoints:
  - `/search?query={search_query}` - get data using commands:  
    - Who is head of department {department_name}
