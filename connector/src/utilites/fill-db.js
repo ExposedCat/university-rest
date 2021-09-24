@@ -1,8 +1,7 @@
-import { config } from './config.js'
-import { connectToDb, Lectors } from '../database.js'
+import { setupDatabase } from '../config/mongo.js'
 
 
-await connectToDb(config.db)
+await setupDatabase()
 
 console.info(`Clearing exisitng lectors..`)
 await Lectors.deleteMany()

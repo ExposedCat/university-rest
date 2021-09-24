@@ -1,10 +1,10 @@
 # University REST 
 ## Setup db with test data 
-Config: `connector/src/utilites/config.js`  
-Running: `cd connector && npm run prepare` or `cd connector && node src/utilites/fillDb.js`.  
+Config: `connector/src/config/manifest.js`  
+Running: `cd connector && npm run prepare` or `cd connector && node src/utilites/fill-db.js`.  
 It will clear `university-rest-db` collection (default, can be changed in config) and add 4 lectors in 2 departments with different salaries and degrees.
 ## Connector 
-Config: `connector/src/utilites/config.js`  
+Config: `connector/src/config/manifest.js`  
 Dependencies: `cd connector && npm install`  
 Running: `cd connector && npm start` or `cd connector && node src/app.js`. By default running port is 3000 (can be changed in config).  
 Endpoints:

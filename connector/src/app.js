@@ -1,7 +1,7 @@
-import { config } from './utilites/config.js'
+import { setupServer } from './config/server.js'
+import { setupDatabase } from './config/mongo.js'
+import { startHandlingRequests } from './controllers/department.js'
 
-import { setupServer } from './server.js'
-import { connectToDb } from './database.js'
-
-await connectToDb(config.db)
-setupServer(config.port)
+await setupDatabase()
+const app = setupServer()
+startHandlingRequests(app)

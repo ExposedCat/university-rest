@@ -4,7 +4,7 @@
   "description": "REST API for the university, which consists of departments and lectors",
   "main": "src/app.js",
   "scripts": {
-    "prepare": "node src/utilites/fillDb.js",
+    "prepare": "node src/utilites/fill-db.js",
     "start": "node src/app.js"
   },
   "repository": {
